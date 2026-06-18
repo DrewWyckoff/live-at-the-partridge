@@ -1,0 +1,244 @@
+/* =========================================================
+   Live at the Partridge — coming soon splash
+   Palette pulled from the logo: muted sage green on charcoal.
+   Tweak these tokens to re-skin the whole page.
+   ========================================================= */
+:root {
+  --bg: #1b2420;
+  --bg-deep: #131915;
+  --ink: #dfe7e0;
+  --ink-soft: #9aa89e;
+  --accent: #6f8c79;
+  --accent-bright: #a7c4ad;
+  --logo: #f4f0dd; /* cream, from the original logo artwork */
+  --line: rgba(167, 196, 173, 0.18);
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: radial-gradient(circle at 50% 30%, var(--bg) 0%, var(--bg-deep) 70%);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ---------- Ambient animated background ---------- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.glow--one {
+  width: 60vmax;
+  height: 60vmax;
+  top: -20vmax;
+  left: -10vmax;
+  background: radial-gradient(circle, rgba(111, 140, 121, 0.55), transparent 65%);
+  animation: drift-one 22s ease-in-out infinite alternate;
+}
+
+.glow--two {
+  width: 50vmax;
+  height: 50vmax;
+  bottom: -18vmax;
+  right: -12vmax;
+  background: radial-gradient(circle, rgba(167, 196, 173, 0.35), transparent 65%);
+  animation: drift-two 28s ease-in-out infinite alternate;
+}
+
+@keyframes drift-one {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(8vmax, 6vmax, 0) scale(1.12); }
+}
+
+@keyframes drift-two {
+  from { transform: translate3d(0, 0, 0) scale(1.05); }
+  to   { transform: translate3d(-7vmax, -5vmax, 0) scale(1); }
+}
+
+/* ---------- Layout ---------- */
+.stage {
+  position: relative;
+  z-index: 1;
+  margin: auto;
+  width: 100%;
+  max-width: 640px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  width: min(460px, 80vw);
+  /* gentle entrance + a slow, barely-there breathing glow */
+  animation: rise 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.logo svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* logo art uses fill="currentColor" — this controls its color */
+  color: var(--logo);
+  filter: drop-shadow(0 0 18px rgba(244, 240, 221, 0.14));
+  animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes breathe {
+  0%, 100% { filter: drop-shadow(0 0 14px rgba(244, 240, 221, 0.12)); }
+  50%      { filter: drop-shadow(0 0 26px rgba(244, 240, 221, 0.26)); }
+}
+
+/* ---------- Tagline ---------- */
+.tagline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1rem + 1.2vw, 1.6rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+  max-width: 30ch;
+  animation: fade-in 1.1s ease 0.25s both;
+}
+
+/* ---------- Signup form ---------- */
+.signup {
+  width: 100%;
+  max-width: 420px;
+  animation: fade-in 1.1s ease 0.45s both;
+}
+
+.signup__label {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.75rem;
+}
+
+.signup__row {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 0.35rem 0.35rem 1.1rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.signup__row:focus-within {
+  border-color: var(--accent-bright);
+  box-shadow: 0 0 0 3px rgba(167, 196, 173, 0.12);
+}
+
+.signup__input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.signup__input::placeholder { color: var(--ink-soft); }
+.signup__input:focus { outline: none; }
+
+.signup__button {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1.2rem;
+  background: var(--accent-bright);
+  color: var(--bg-deep);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.signup__button:hover { background: #c0d8c5; }
+.signup__button:active { transform: scale(0.97); }
+
+.signup__message {
+  min-height: 1.2em;
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: var(--accent-bright);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.signup__message.is-visible { opacity: 1; }
+.signup__message.is-error { color: #e0a3a3; }
+
+/* ---------- Footer ---------- */
+.footer {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  animation: fade-in 1.1s ease 0.65s both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Respect reduced-motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .glow,
+  .logo,
+  .logo img,
+  .tagline,
+  .signup,
+  .footer {
+    animation: none !important;
+  }
+}
