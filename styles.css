@@ -29,6 +29,12 @@ body {
   min-height: 100%;
 }
 
+/* Solid dark base so the iOS overscroll / rubber-band area and the safe-area
+   insets (under the notch / home indicator) stay the background color. */
+html {
+  background-color: var(--bg-deep);
+}
+
 body {
   font-family: var(--font-body);
   color: var(--ink);
