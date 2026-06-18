@@ -22,16 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // musicians — a small nod to the venue's home state. Email-formatted so it
   // still reads as a hint for the field.
   const georgiaMusicians = [
-    "alanjackson@email.com", // country — Newnan, GA
-    "travistritt@email.com", // country — Marietta, GA
-    "jasonaldean@email.com", // country — Macon, GA
-    "lukebryan@email.com", // country — Leesburg, GA
-    "trishayearwood@email.com", // country — Monticello, GA
-    "brantleygilbert@email.com", // country — Jefferson, GA
-    "zacbrown@email.com", // country — Atlanta, GA
-    "greggallman@email.com", // rock — Allman Brothers, Macon, GA
-    "michaelstipe@email.com", // rock — R.E.M., Athens, GA
-    "chrisrobinson@email.com", // rock — The Black Crowes, Atlanta, GA
+    "alan@jackson.com", // country — Newnan, GA
+    "travis@tritt.com", // country — Marietta, GA
+    "jason@aldean.com", // country — Macon, GA
+    "luke@bryan.com", // country — Leesburg, GA
+    "trisha@yearwood.com", // country — Monticello, GA
+    "brantley@gilbert.com", // country — Jefferson, GA
+    "zac@brown.com", // country — Atlanta, GA
+    "gregg@allman.com", // rock — Allman Brothers, Macon, GA
+    "michael@stipe.com", // rock — R.E.M., Athens, GA
+    "chris@robinson.com", // rock — The Black Crowes, Atlanta, GA
   ];
 
   let phIndex = Math.floor(Math.random() * georgiaMusicians.length);
