@@ -57,39 +57,42 @@ body {
 }
 
 .glow {
+  /* Sized in vmin and pulled toward the center so the soft edges never reach
+     the top/bottom toolbar zones (which would break the solid-color match).
+     Positioned by their center via translate(-50%, -50%). */
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.5;
+  filter: blur(80px);
+  opacity: 0.55;
   will-change: transform;
 }
 
 .glow--one {
-  width: 60vmax;
-  height: 60vmax;
-  top: -20vmax;
-  left: -10vmax;
-  background: radial-gradient(circle, rgba(111, 140, 121, 0.55), transparent 65%);
+  width: 40vmin;
+  height: 40vmin;
+  top: 42%;
+  left: 40%;
+  background: radial-gradient(circle, rgba(111, 140, 121, 0.55), transparent 62%);
   animation: drift-one 22s ease-in-out infinite alternate;
 }
 
 .glow--two {
-  width: 50vmax;
-  height: 50vmax;
-  bottom: -18vmax;
-  right: -12vmax;
-  background: radial-gradient(circle, rgba(167, 196, 173, 0.35), transparent 65%);
+  width: 34vmin;
+  height: 34vmin;
+  top: 56%;
+  left: 60%;
+  background: radial-gradient(circle, rgba(167, 196, 173, 0.35), transparent 62%);
   animation: drift-two 28s ease-in-out infinite alternate;
 }
 
 @keyframes drift-one {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to   { transform: translate3d(8vmax, 6vmax, 0) scale(1.12); }
+  from { transform: translate(-50%, -50%) scale(1); }
+  to   { transform: translate(-44%, -56%) scale(1.08); }
 }
 
 @keyframes drift-two {
-  from { transform: translate3d(0, 0, 0) scale(1.05); }
-  to   { transform: translate3d(-7vmax, -5vmax, 0) scale(1); }
+  from { transform: translate(-50%, -50%) scale(1.05); }
+  to   { transform: translate(-56%, -44%) scale(1); }
 }
 
 /* ---------- Layout ---------- */
