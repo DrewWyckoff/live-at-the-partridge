@@ -30,15 +30,17 @@ body {
 }
 
 /* Solid dark base so the iOS overscroll / rubber-band area and the safe-area
-   insets (under the notch / home indicator) stay the background color. */
+   insets (under the notch / home indicator) stay the background color.
+   A flat color (not a gradient) lets the mobile theme-color match exactly —
+   depth comes from the animated .glow blobs instead. */
 html {
-  background-color: var(--bg-deep);
+  background-color: var(--bg);
 }
 
 body {
   font-family: var(--font-body);
   color: var(--ink);
-  background: radial-gradient(circle at 50% 30%, var(--bg) 0%, var(--bg-deep) 70%);
+  background-color: var(--bg);
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
