@@ -197,9 +197,7 @@ body {
   font-size: 0.95rem;
 }
 
-/* Placeholder crossfades as it cycles through Georgia musicians (see script.js) */
 .signup__input::placeholder { color: var(--ink-soft); transition: color 0.4s ease; }
-.signup__input.is-fading::placeholder { color: transparent; }
 /* Fade the placeholder out on focus (default browser behavior keeps it) */
 .signup__input:focus::placeholder { color: transparent; }
 .signup__input:focus { outline: none; }

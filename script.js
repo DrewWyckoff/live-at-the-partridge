@@ -18,41 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     message.classList.add("is-visible");
   };
 
-  // Cycle the email placeholder through famous Georgia rock & country
-  // musicians — a small nod to the venue's home state. Email-formatted so it
-  // still reads as a hint for the field.
-  const georgiaMusicians = [
-    "alan@jackson.com", // country — Newnan, GA
-    "travis@tritt.com", // country — Marietta, GA
-    "jason@aldean.com", // country — Macon, GA
-    "luke@bryan.com", // country — Leesburg, GA
-    "trisha@yearwood.com", // country — Monticello, GA
-    "brantley@gilbert.com", // country — Jefferson, GA
-    "zac@brown.com", // country — Atlanta, GA
-    "gregg@allman.com", // rock — Allman Brothers, Macon, GA
-    "michael@stipe.com", // rock — R.E.M., Athens, GA
-    "chris@robinson.com", // rock — The Black Crowes, Atlanta, GA
-  ];
-
-  let phIndex = Math.floor(Math.random() * georgiaMusicians.length);
-  input.placeholder = georgiaMusicians[phIndex];
-
-  const advancePlaceholder = () => {
-    // Don't distract while the visitor is focused on / typing in the field.
-    if (document.activeElement === input || input.value) return;
-    input.classList.add("is-fading");
-    setTimeout(() => {
-      phIndex = (phIndex + 1) % georgiaMusicians.length;
-      input.placeholder = georgiaMusicians[phIndex];
-      input.classList.remove("is-fading");
-    }, 400);
-  };
-
-  // Honor reduced-motion: show a single name, skip the crossfade cycling.
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    setInterval(advancePlaceholder, 3000);
-  }
-
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
