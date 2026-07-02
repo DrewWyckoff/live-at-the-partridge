@@ -398,7 +398,7 @@ body {
 /* Google's required reCAPTCHA disclosure, shown in place of the hidden
    badge (see .grecaptcha-badge above). */
 .recaptcha-terms {
-  margin: 1.25rem 0 0;
+  margin: 0.5rem 0 0;
   font-size: 0.7rem;
   line-height: 1.5;
   color: var(--ink-soft);
