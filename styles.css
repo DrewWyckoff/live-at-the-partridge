@@ -384,20 +384,28 @@ body {
   text-decoration: underline !important;
 }
 
-/* Keep Google's invisible-reCAPTCHA badge clear of the submit button.
-   The badge is fixed to the bottom-right corner; since our submit button
-   is full-width, the fix is vertical clearance rather than moving the
-   badge sideways (repositioning it just un-collapses the icon to its full
-   256px width, which blocks more on mobile). Adding space below the form
-   lifts the button above the badge's corner zone, and we drop the badge
-   itself lower toward the viewport edge. It sets bottom via an inline
-   style, so this needs !important. */
+/* Hide Google's reCAPTCHA badge. Positional offsets are unreliable here:
+   the badge is injected inside the CC form, and the form's fade-in leaves
+   a transform on it, so the badge's position: fixed resolves relative to
+   the form (over its own content) rather than the viewport. visibility:
+   hidden sidesteps that entirely. When the badge is hidden, Google's terms
+   require showing the reCAPTCHA branding text instead — see .recaptcha-terms
+   and the markup in index.html. */
 .grecaptcha-badge {
-  bottom: -30px !important;
+  visibility: hidden !important;
 }
 
-.ctct-inline-form {
-  margin-bottom: 6rem;
+/* Google's required reCAPTCHA disclosure, shown in place of the hidden
+   badge (see .grecaptcha-badge above). */
+.recaptcha-terms {
+  margin: 1.25rem 0 0;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.recaptcha-terms a {
+  color: var(--accent-bright);
+  text-decoration: underline;
 }
 
 /* ---------- Respect reduced-motion preferences ---------- */
