@@ -44,7 +44,13 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
-  overflow: hidden;
+  /* Center content when it fits; allow vertical scroll when the embedded
+     signup form makes the page taller than the viewport. Auto margins on
+     .stage keep it reachable from the top (unlike justify-content: center).
+     overflow-x stays hidden so the animated glow blobs never trigger a
+     horizontal scrollbar. */
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
 }
 
@@ -244,6 +250,139 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* =========================================================
+   Constant Contact inline form
+   The widget injects its own markup + stylesheet at runtime, so these
+   rules are scoped under .ctct-inline-form (for specificity) and use
+   !important on visual properties to reliably beat CC's own CSS, which
+   loads after this file. Re-skins the form to match the splash palette.
+   ========================================================= */
+.ctct-inline-form {
+  width: 100%;
+  max-width: 420px;
+  animation: fade-in 1.1s ease 0.45s both;
+}
+
+/* Strip CC's card chrome: no white box, borders, or padding. */
+.ctct-inline-form .ctct-form-container,
+.ctct-inline-form .ctct-form-defaults {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: var(--font-body) !important;
+  color: var(--ink) !important;
+}
+
+/* CC's title + description. The page already shows a heading above the
+   form, so these are hidden by default. Delete this rule to show them. */
+.ctct-inline-form .ctct-form-header,
+.ctct-inline-form .ctct-form-defaults > .ctct-form-custom > .ctct-form-text {
+  display: none !important;
+}
+
+/* If you'd rather keep them, remove the rule above and these take effect: */
+.ctct-inline-form .ctct-form-header {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  color: var(--ink) !important;
+}
+.ctct-inline-form .ctct-form-text {
+  font-size: 0.9rem !important;
+  color: var(--ink-soft) !important;
+}
+
+/* Field rows */
+.ctct-inline-form .ctct-form-field {
+  margin-bottom: 1rem !important;
+  text-align: left;
+}
+
+.ctct-inline-form .ctct-form-label {
+  display: block !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--ink-soft) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* CC marks required fields with .ctct-form-required — tint the asterisk. */
+.ctct-inline-form .ctct-form-required::after {
+  color: var(--accent-bright) !important;
+}
+
+/* Text/email inputs */
+.ctct-inline-form .ctct-form-element {
+  width: 100% !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px !important;
+  padding: 0.7rem 1rem !important;
+  color: var(--ink) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.95rem !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.ctct-inline-form .ctct-form-element::placeholder {
+  color: var(--ink-soft) !important;
+}
+
+.ctct-inline-form .ctct-form-element:focus {
+  outline: none !important;
+  border-color: var(--accent-bright) !important;
+  box-shadow: 0 0 0 3px rgba(167, 196, 173, 0.12) !important;
+}
+
+/* Submit button — sage pill, matching the original CTA. */
+.ctct-inline-form .ctct-form-button {
+  width: 100% !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 0.75rem 1.2rem !important;
+  background: var(--accent-bright) !important;
+  color: var(--bg-deep) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease, transform 0.1s ease !important;
+}
+
+.ctct-inline-form .ctct-form-button:hover {
+  background: #c0d8c5 !important;
+}
+.ctct-inline-form .ctct-form-button:active {
+  transform: scale(0.98) !important;
+}
+
+/* Validation + status messages */
+.ctct-inline-form .ctct-form-errorMessage {
+  color: #e0a3a3 !important;
+  font-size: 0.85rem !important;
+}
+
+.ctct-inline-form .ctct-form-success .ctct-form-header {
+  display: block !important;
+  color: var(--accent-bright) !important;
+}
+.ctct-inline-form .ctct-form-success .ctct-form-text {
+  color: var(--ink-soft) !important;
+}
+
+/* Fine print: GDPR consent + Constant Contact service link */
+.ctct-inline-form .ctct-gdpr-text {
+  font-size: 0.7rem !important;
+  line-height: 1.5 !important;
+  color: var(--ink-soft) !important;
+}
+.ctct-inline-form .ctct-form-footer-link {
+  color: var(--accent-bright) !important;
+  text-decoration: underline !important;
+}
+
 /* ---------- Respect reduced-motion preferences ---------- */
 @media (prefers-reduced-motion: reduce) {
   .glow,
@@ -251,6 +390,7 @@ body {
   .logo img,
   .tagline,
   .signup,
+  .ctct-inline-form,
   .footer {
     animation: none !important;
   }
