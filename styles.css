@@ -108,24 +108,24 @@ body {
   margin: auto;
   width: 100%;
   max-width: 640px;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.5rem;
+  gap: 1.5rem;
 }
 
 .content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.75rem;
+  gap: 1.15rem;
 }
 
 /* ---------- Logo ---------- */
 .logo {
-  width: min(460px, 80vw);
+  width: min(400px, 72vw);
   /* gentle entrance + a slow, barely-there breathing glow */
   animation: rise 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
@@ -295,7 +295,7 @@ body {
 
 /* Field rows */
 .ctct-inline-form .ctct-form-field {
-  margin-bottom: 1rem !important;
+  margin-bottom: 0.6rem !important;
   text-align: left;
 }
 
@@ -398,7 +398,7 @@ body {
 /* Google's required reCAPTCHA disclosure, shown in place of the hidden
    badge (see .grecaptcha-badge above). */
 .recaptcha-terms {
-  margin: 0.5rem 0 0;
+  margin: -0.5rem 0 0;
   font-size: 0.7rem;
   line-height: 1.5;
   color: var(--ink-soft);
